@@ -137,4 +137,10 @@ class RangeConsistencyTest {
     assert( (-3 to Int.MaxValue).dropWhile(_ <= 0).length == Int.MaxValue )
     assert( (-3 to Int.MaxValue).span(_ <= 0) match { case (a,b) => a.length == 4 && b.length == Int.MaxValue } )
   }
+  
+  @Test
+  def testSI9348() {
+    // Test exclusive range with (end-start) != 0 (mod step)
+    assert( (0.0 until 0.4 by 0.25).size == 2 )
+  }
 }
